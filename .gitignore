@@ -1,0 +1,7 @@
+# Environment variables files - should never be committed
+.env
+.env.*
+.env.local
+.env.development
+.env.test
+.env.production

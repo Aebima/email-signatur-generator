@@ -1,30 +1,19 @@
 "use client";
 
 import React from "react";
-import { Card } from "@radix-ui/themes";
-import type { ContactFormValues } from "./ContactForm";
+import { ContactFormValues } from "./ContactForm";
+import Image from "next/image";
 
 interface SignaturePreviewProps {
-  contactInfo?: ContactFormValues;
+  contactInfo: ContactFormValues;
 }
 
-const SignaturePreview = ({
-  contactInfo = {
-    fullName: "Hans Muster",
-    prefixedTitle: "Prof. Dr.",
-    suffixTitle: "M.Sc.",
-    function: "Leiter Organisationseinheit",
-    abteilung: "Abteilung",
-    email: "hans.muster@ost.ch",
-    phoneOffice: "+41 58 257 xx xx",
-    phoneMobile: "+41 58 257 xx xx",
-  },
-}: SignaturePreviewProps) => {
+const SignaturePreview = ({ contactInfo }: SignaturePreviewProps) => {
   return (
     <div className="w-full">
-      <Card className="w-full bg-white">
+      <div className="w-full bg-white">
         <div className="p-6">
-         <h2 className="text-2xl font-bold mb-6">Vorschau</h2>
+          <h2 className="text-2xl font-bold mb-6">Vorschau</h2>
           <div className="border p-4 rounded-md bg-gray-50">
             <div className="font-sans text-sm">
               <div className="flex flex-col space-y-1">
@@ -51,11 +40,15 @@ const SignaturePreview = ({
                 </div>
 
                 <div>
-                  <img 
-                    src="/ost-logo.png" 
-                    alt="OST Logo" 
-                    className="h-auto w-[250px] mb-2" 
-                  />
+                  <div className="mb-2">
+                    <Image 
+                      src="/ost-logo.png" 
+                      alt="OST Logo" 
+                      width={250}
+                      height={40}
+                      className="h-auto w-[250px]" 
+                    />
+                  </div>
                   <p className="italic mb-1">{contactInfo.abteilung}</p>
                   <p>
                     OST – Ostschweizer Fachhochschule | Oberseestrasse 10 | 8640 Rapperswil | Schweiz |{' '}
@@ -74,7 +67,7 @@ const SignaturePreview = ({
             </div>
           </div>
         </div>
-      </Card>
+      </div>
     </div>
   );
 };

@@ -25,3 +25,33 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Slider Arrow Styles */
+.slick-prev,
+.slick-next {
+  width: 40px;
+  height: 40px;
+  z-index: 1;
+
+  border-radius: 50%;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+.slick-prev:before,
+.slick-next:before {
+  color: #4b5563 !important;
+  font-size: 20px !important;
+  opacity: 1 !important;
+}
+
+.slick-prev {
+  left: -20px !important;
+}
+
+.slick-next {
+  right: -20px !important;
+}

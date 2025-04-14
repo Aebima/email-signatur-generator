@@ -10,9 +10,14 @@ interface TemplateSliderProps {
   currentTemplate: string;
 }
 
+interface ArrowProps {
+  className?: string;
+  style?: React.CSSProperties;
+  onClick?: () => void;
+}
+
 const TemplateSlider = ({ onTemplateChange, currentTemplate }: TemplateSliderProps) => {
-  const NextArrow = (props: any) => {
-    const { className, style, onClick } = props;
+  const NextArrow = ({ className, style, onClick }: ArrowProps) => {
     return (
       <div
         className={className}
@@ -22,8 +27,7 @@ const TemplateSlider = ({ onTemplateChange, currentTemplate }: TemplateSliderPro
     );
   };
 
-  const PrevArrow = (props: any) => {
-    const { className, style, onClick } = props;
+  const PrevArrow = ({ className, style, onClick }: ArrowProps) => {
     return (
       <div
         className={className}

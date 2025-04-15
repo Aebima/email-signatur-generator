@@ -15,29 +15,25 @@ const SignatureExport = ({
   const [codeCopied, setCodeCopied] = useState(false);
 
   const copyToClipboard = async () => {
-    let tempDiv = document.createElement('div');
+    const tempDiv = document.createElement('div');
     try {
-      // Create a temporary div and add it to the document
       tempDiv.innerHTML = htmlCode;
       tempDiv.style.position = 'fixed';
       tempDiv.style.left = '-9999px';
       document.body.appendChild(tempDiv);
 
-      // Select the content
       const range = document.createRange();
       range.selectNode(tempDiv);
       const selection = window.getSelection();
       selection?.removeAllRanges();
       selection?.addRange(range);
 
-      // Copy the selected content
       document.execCommand('copy');
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
       console.error('Failed to copy', err);
     } finally {
-      // Clean up
       window.getSelection()?.removeAllRanges();
       if (document.body.contains(tempDiv)) {
         document.body.removeChild(tempDiv);

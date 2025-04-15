@@ -5,7 +5,6 @@ import { ContactFormValues } from "./ContactForm";
 import SignatureExport from "./SignatureExport";
 import { templates } from "@/templates/signatures";
 import { BaseTemplate } from "@/templates/signatures/base";
-import ReactDOMServer from "react-dom/server";
 
 interface SignaturePreviewProps {
   contactInfo: ContactFormValues;

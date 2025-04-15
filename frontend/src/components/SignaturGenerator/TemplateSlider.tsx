@@ -4,6 +4,7 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { templates } from "@/templates/signatures";
 
 interface TemplateSliderProps {
   onTemplateChange: (template: string) => void;
@@ -48,42 +49,33 @@ const TemplateSlider = ({ onTemplateChange, currentTemplate }: TemplateSliderPro
     prevArrow: <PrevArrow />,
     initialSlide: 0,
     beforeChange: (oldIndex: number, newIndex: number) => {
-      const templates = ["rapperswil", "buchs", "stgallen", "stgallen-ip"];
-      onTemplateChange(templates[newIndex]);
+      const template = templates[newIndex];
+      if (template?.id) {
+        onTemplateChange(template.id);
+      }
     },
     customPaging: (i: number) => {
-      const labels = ["Rapperswil", "Buchs", "St. Gallen", "St. Gallen IP"];
+      const template = templates[i];
       return (
         <div className="pt-4">
-          <button className="text-sm">{labels[i]}</button>
+          <button className="text-sm">{template?.label || ''}</button>
         </div>
       );
     },
   };
 
-  const templates = [
-    { id: "rapperswil", label: "Template Rapperswil" },
-    { id: "buchs", label: "Template Buchs" },
-    { id: "stgallen", label: "Template St. Gallen" },
-    { id: "stgallen-ip", label: "Template St. Gallen Innovation Park" },
-    { id: "rapperswil_en", label: "Template Rapperswil (English)" },
-    { id: "buchs_en", label: "Template Buchs (English)" },
-    { id: "stgallen_en", label: "Template St. Gallen (English)" },
-    { id: "stgallen-ip_en", label: "Template St. Gallen Innovation Park (English)" },
-  ];
-
   return (
     <div className="max-w-5xl mx-auto mb-8">
       <Slider {...settings}>
         {templates.map((template) => (
-          <div key={template.id} className="p-2">
+          <div key={template?.id || ''} className="p-2">
             <div
               className={`border p-4 rounded-lg bg-white text-center h-24 w-48 flex items-center justify-center cursor-pointer ${
-                currentTemplate === template.id ? "border-blue-500" : "border-gray-300"
+                currentTemplate === template?.id ? "border-blue-500" : "border-gray-300"
               }`}
-              onClick={() => onTemplateChange(template.id)}
+              onClick={() => template?.id && onTemplateChange(template.id)}
             >
-              <h3 className="text-sm">{template.label}</h3>
+              <h3 className="text-sm">{template?.label || ''}</h3>
             </div>
           </div>
         ))}

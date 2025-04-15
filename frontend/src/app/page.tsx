@@ -21,7 +21,7 @@ export default function Home() {
     <main className="min-h-screen p-4">
       <h1 className="text-2xl text-center font-bold mb-6">E-Mail Signatur Generator</h1>
       <TemplateSlider onTemplateChange={handleTemplateChange} currentTemplate={currentTemplate} />
-      <ContactForm onFormChange={handleFormChange} />
+      <ContactForm onFormChange={handleFormChange} currentTemplate={currentTemplate} />
     </main>
   );
 } 

@@ -8,6 +8,7 @@ import SignaturePreview from "./SignaturePreview";
 
 interface ContactFormProps {
   onFormChange?: (data: ContactFormValues) => void;
+  currentTemplate: string;
 }
 
 export interface ContactFormValues {
@@ -32,7 +33,7 @@ const defaultValues: ContactFormValues = {
   phoneMobile: "+41 58 257 xx xx",
 };
 
-const ContactForm = ({ onFormChange = () => {} }: ContactFormProps) => {
+const ContactForm = ({ onFormChange = () => {}, currentTemplate }: ContactFormProps) => {
   const form = useForm<ContactFormValues>({
     mode: "onChange",
   });
@@ -190,13 +191,15 @@ const ContactForm = ({ onFormChange = () => {} }: ContactFormProps) => {
               <Button 
                 type="button"
                 onClick={handleUpdatePreview}
+                className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-md transition-colors"
               >
                 Vorschau aktualisieren
               </Button>
             </div>
           </form>
         </div>
-        <SignaturePreview contactInfo={formData} />
+        <SignaturePreview contactInfo={formData} currentTemplate={currentTemplate} />
+
       </div>
     </div>
   );

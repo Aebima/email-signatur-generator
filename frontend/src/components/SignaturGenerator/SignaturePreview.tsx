@@ -13,6 +13,11 @@ interface SignaturePreviewProps {
 
 const SignaturePreview = ({ contactInfo, currentTemplate }: SignaturePreviewProps) => {
   const template = templates.find(t => t?.id === currentTemplate) || templates[0];
+  const [origin, setOrigin] = React.useState('');
+
+  React.useEffect(() => {
+    setOrigin(window.location.origin);
+  }, []);
 
   if (!template) {
     return <div>No template found</div>;
@@ -33,7 +38,7 @@ const SignaturePreview = ({ contactInfo, currentTemplate }: SignaturePreviewProp
 
           <div style="border: none;">
             <div style="margin-bottom: 8px; border: none;">
-              <img src="${window.location.origin}${template.logo}" alt="OST Logo" width="250" style="height: auto; width: 250px; border: none;" />
+              <img src="${origin}${template.logo}" alt="OST Logo" width="250" style="height: auto; width: 250px; border: none;" />
             </div>
             <p style="font-style: italic; margin-bottom: 4px; border: none;">${contactInfo.abteilung}</p>
             <p style="margin: 0; border: none;">${template.address} <a href="https://www.ost.ch" style="color: #2563eb; text-decoration: none; border: none; outline: none;" target="_blank" rel="nofollow">ost.ch</a></p>

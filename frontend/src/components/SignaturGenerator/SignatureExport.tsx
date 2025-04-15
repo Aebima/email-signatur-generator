@@ -8,8 +8,7 @@ interface SignatureExportProps {
 }
 
 const SignatureExport = ({
-  htmlCode = "",
-  formattedText = "",
+  htmlCode = ""
 }: SignatureExportProps) => {
   const [copied, setCopied] = useState(false);
   const [codeCopied, setCodeCopied] = useState(false);

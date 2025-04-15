@@ -1,5 +1,4 @@
 import React from "react";
-import { ContactFormValues } from "@/components/SignaturGenerator/ContactForm";
 import { SignatureTemplate } from "./index";
 import { BaseTemplate } from "./base";
 

@@ -9,7 +9,7 @@ import { BaseTemplate } from "@/templates/signatures/base";
 
 const getLogoDataUrl = async (logoPath: string) => {
   try {
-    const response = await fetch(`${logoPath}`);
+    const response = await fetch(`${window.location.origin}${logoPath}`);
     const blob = await response.blob();
     return new Promise((resolve) => {
       const reader = new FileReader();
@@ -29,11 +29,10 @@ interface SignaturePreviewProps {
 
 const SignaturePreview = ({ contactInfo, currentTemplate }: SignaturePreviewProps) => {
   const template = templates.find(t => t?.id === currentTemplate) || templates[0];
-  const [origin, setOrigin] = React.useState('');
+
   const [logoDataUrl, setLogoDataUrl] = React.useState('');
 
   React.useEffect(() => {
-    setOrigin(window.location.origin);
     // Convert logo to data URL when component mounts
     getLogoDataUrl(template.logo).then(url => setLogoDataUrl(url as string));
   }, [template.logo]);

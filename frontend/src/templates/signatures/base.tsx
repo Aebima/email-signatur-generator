@@ -1,5 +1,6 @@
 import React from "react";
 import { ContactFormValues } from "@/components/SignaturGenerator/ContactForm";
+import Image from "next/image";
 
 interface BaseTemplateProps {
     contactInfo: ContactFormValues;
@@ -18,6 +19,9 @@ export const BaseTemplate = ({
     slogan,
     logo
 }: BaseTemplateProps) => {
+    // Check if the logo is a data URL
+    const isDataUrl = logo.startsWith('data:');
+
     return (
         <div className="font-sans text-sm">
             <div className="flex flex-col space-y-1">
@@ -49,12 +53,24 @@ export const BaseTemplate = ({
 
                 <div>
                     <div className="mb-2">
-                        <img
-                            src={logo}
-                            alt="OST Logo"
-                            width="250"
-                            style={{ height: 'auto', width: '250px' }}
-                        />
+                        {isDataUrl ? (
+                            // Use regular img tag for data URLs
+                            <img
+                                src={logo}
+                                alt="OST Logo"
+                                width={250}
+                                style={{ height: 'auto', width: '250px' }}
+                            />
+                        ) : (
+                            // Use Next.js Image component for regular URLs
+                            <Image
+                                src={logo}
+                                alt="OST Logo"
+                                width={250}
+                                height={100}
+                                style={{ height: 'auto', width: '250px' }}
+                            />
+                        )}
                     </div>
                     <p className="italic mb-1">{contactInfo.abteilung}</p>
                     <p>

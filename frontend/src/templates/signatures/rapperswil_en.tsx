@@ -5,7 +5,7 @@ import { BaseTemplate } from "./base";
 export const rapperswilTemplateEN: SignatureTemplate = {
   id: 'rapperswil_en',
   label: 'Template Rapperswil (English)',
-  address: 'Eastern Switzerland University of Applied Sciences | Oberseestrasse 10 | 8640 Rapperswil | Switzerland |',
+  address: 'Eastern Switzerland University of Applied Sciences | Oberseestrasse 10 | 8640 Rapperswil | Switzerland | ',
   phoneDirect: 'T direct',
   phoneCentral: 'T central',
   slogan: 'EMPOWERING EXPERTISE.',

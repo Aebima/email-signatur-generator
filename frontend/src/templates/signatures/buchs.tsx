@@ -5,7 +5,7 @@ import { BaseTemplate } from "./base";
 export const buchsTemplate: SignatureTemplate = {
   id: 'buchs',
   label: 'Template Buchs',
-  address: 'OST – Ostschweizer Fachhochschule | Werdenbergstrasse 4 | 9471 Buchs | Schweiz |',
+  address: 'OST – Ostschweizer Fachhochschule | Werdenbergstrasse 4 | 9471 Buchs | Schweiz | ',
   phoneDirect: 'T direkt',
   phoneCentral: 'T zentral',
   slogan: 'WO WISSEN WIRKT.',

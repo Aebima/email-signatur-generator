@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { Button } from "@radix-ui/themes";
 
 interface SignatureExportProps {
   htmlCode?: string;
@@ -17,23 +18,35 @@ const SignatureExport = ({
     const tempDiv = document.createElement('div');
     try {
       tempDiv.innerHTML = htmlCode;
-      tempDiv.style.position = 'fixed';
-      tempDiv.style.left = '-9999px';
-      document.body.appendChild(tempDiv);
+      
+      const htmlBlob = new Blob([tempDiv.outerHTML], { type: 'text/html' });
+      const textBlob = new Blob([tempDiv.innerText], { type: 'text/plain' });
 
-      const range = document.createRange();
-      range.selectNode(tempDiv);
-      const selection = window.getSelection();
-      selection?.removeAllRanges();
-      selection?.addRange(range);
+      const data = new ClipboardItem({
+        'text/html': htmlBlob,
+        'text/plain': textBlob
+      });
 
-      document.execCommand('copy');
+      await navigator.clipboard.write([data]);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
       console.error('Failed to copy', err);
+
+      try {
+        tempDiv.style.position = 'fixed';
+        tempDiv.style.left = '-9999px';
+        document.body.appendChild(tempDiv);
+        const range = document.createRange();
+        range.selectNode(tempDiv);
+        const selection = window.getSelection();
+        selection?.removeAllRanges();
+        selection?.addRange(range);
+        document.execCommand('copy');
+      } catch (fallbackErr) {
+        console.error('Fallback copy failed', fallbackErr);
+      }
     } finally {
-      window.getSelection()?.removeAllRanges();
       if (document.body.contains(tempDiv)) {
         document.body.removeChild(tempDiv);
       }
@@ -48,20 +61,26 @@ const SignatureExport = ({
   };
 
   return (
-    <div className="flex justify-center space-x-4 mt-4">
-      <button
+    <div className="flex justify-center gap-4 mt-4">
+      <Button
+        type="button"
         onClick={copyToClipboard}
-        className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-md transition-colors"
+        variant="solid"
+        size="3"
+        className="px-8 py-3"
       >
         {copied ? "Kopiert!" : "Signatur kopieren"}
-      </button>
+      </Button>
 
-      <button
+      <Button
+        type="button"
         onClick={copyHtmlCode}
-        className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-md transition-colors"
+        variant="solid"
+        size="3"
+        className="px-8 py-3"
       >
         {codeCopied ? "Kopiert!" : "Quellcode kopieren"}
-      </button>
+      </Button>
     </div>
   );
 };

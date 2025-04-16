@@ -5,7 +5,7 @@ import { BaseTemplate } from "./base";
 export const stGallenTemplateEN: SignatureTemplate = {
   id: 'stgallen_en',
   label: 'Template St. Gallen (English)',
-  address: 'Eastern Switzerland University of Applied Sciences | Rosenbergstrasse 59 | 9001 St.Gallen | Switzerland |',
+  address: 'Eastern Switzerland University of Applied Sciences | Rosenbergstrasse 59 | 9001 St.Gallen | Switzerland | ',
   phoneDirect: 'T direct',
   phoneCentral: 'T central',
   slogan: 'EMPOWERING EXPERTISE.',

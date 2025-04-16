@@ -5,7 +5,7 @@ import { BaseTemplate } from "./base";
 export const stGallenIPTemplateEN: SignatureTemplate = {
   id: 'stgallen_ip_en',
   label: 'Template St. Gallen Innovation Park (English)',
-  address: 'Eastern Switzerland University of Applied Sciences | Lerchenfeldstrasse 3 | 9014 St.Gallen | Switzerland |',
+  address: 'Eastern Switzerland University of Applied Sciences | Lerchenfeldstrasse 3 | 9014 St.Gallen | Switzerland | ',
   phoneDirect: 'T direct',
   phoneCentral: 'T central',
   slogan: 'EMPOWERING EXPERTISE.',

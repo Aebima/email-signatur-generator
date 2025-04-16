@@ -45,7 +45,7 @@ const ContactForm = ({ onFormChange = () => {}, currentTemplate }: ContactFormPr
     const currentFormData = form.getValues();
     const errors: Record<string, string> = {};
 
-    // Validate required fields
+    // Validation
     if (!currentFormData.fullName.trim()) {
       errors.fullName = "Name ist erforderlich";
     }

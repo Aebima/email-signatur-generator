@@ -5,7 +5,7 @@ import { BaseTemplate } from "./base";
 export const stGallenIPTemplate: SignatureTemplate = {
   id: 'stgallen_ip',
   label: 'Template St. Gallen Innovation Park',
-  address: 'OST – Ostschweizer Fachhochschule | Lerchenfeldstrasse 3 | 9014 St.Gallen | Schweiz |',
+  address: 'OST – Ostschweizer Fachhochschule | Lerchenfeldstrasse 3 | 9014 St.Gallen | Schweiz | ',
   phoneDirect: 'T direkt',
   phoneCentral: 'T zentral',
   slogan: 'WO WISSEN WIRKT.',

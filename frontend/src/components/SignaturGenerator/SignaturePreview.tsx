@@ -6,6 +6,22 @@ import SignatureExport from "./SignatureExport";
 import { templates } from "@/templates/signatures";
 import { BaseTemplate } from "@/templates/signatures/base";
 
+
+const getLogoDataUrl = async (logoPath: string) => {
+  try {
+    const response = await fetch(`${origin}${logoPath}`);
+    const blob = await response.blob();
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result);
+      reader.readAsDataURL(blob);
+    });
+  } catch (error) {
+    console.error('Error converting logo to data URL:', error);
+    return logoPath;
+  }
+};
+
 interface SignaturePreviewProps {
   contactInfo: ContactFormValues;
   currentTemplate: string;
@@ -14,10 +30,13 @@ interface SignaturePreviewProps {
 const SignaturePreview = ({ contactInfo, currentTemplate }: SignaturePreviewProps) => {
   const template = templates.find(t => t?.id === currentTemplate) || templates[0];
   const [origin, setOrigin] = React.useState('');
+  const [logoDataUrl, setLogoDataUrl] = React.useState('');
 
   React.useEffect(() => {
     setOrigin(window.location.origin);
-  }, []);
+    // Convert logo to data URL when component mounts
+    getLogoDataUrl(template.logo).then(url => setLogoDataUrl(url as string));
+  }, [template.logo]);
 
   if (!template) {
     return <div>No template found</div>;
@@ -38,7 +57,7 @@ const SignaturePreview = ({ contactInfo, currentTemplate }: SignaturePreviewProp
 
           <div style="border: none;">
             <div style="margin-bottom: 8px; border: none;">
-              <img src="${origin}${template.logo}" alt="OST Logo" width="250" style="height: auto; width: 250px; border: none;" />
+              <img src="${logoDataUrl}" alt="OST Logo" style="width: 250px !important; display: block;" />
             </div>
             <p style="font-style: italic; margin-bottom: 4px; border: none;">${contactInfo.abteilung}</p>
             <p style="margin: 0; border: none;">${template.address} <a href="https://www.ost.ch" style="color: #2563eb; text-decoration: none; border: none; outline: none;" target="_blank" rel="nofollow">ost.ch</a></p>
@@ -78,7 +97,7 @@ ${template.slogan}
                 phoneDirect={template.phoneDirect}
                 phoneCentral={template.phoneCentral}
                 slogan={template.slogan}
-                logo={template.logo}
+                logo={logoDataUrl || template.logo}
               />
             </div>
           </div>

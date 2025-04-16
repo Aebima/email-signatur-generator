@@ -5,7 +5,7 @@ import { BaseTemplate } from "./base";
 export const rapperswilTemplate: SignatureTemplate = {
   id: 'rapperswil',
   label: 'Template Rapperswil',
-  address: 'OST – Ostschweizer Fachhochschule | Oberseestrasse 10 | 8640 Rapperswil | Schweiz |',
+  address: 'OST – Ostschweizer Fachhochschule | Oberseestrasse 10 | 8640 Rapperswil | Schweiz | ',
   phoneDirect: 'T direkt',
   phoneCentral: 'T zentral',
   slogan: 'WO WISSEN WIRKT.',

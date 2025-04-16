@@ -9,7 +9,7 @@ import { BaseTemplate } from "@/templates/signatures/base";
 
 const getLogoDataUrl = async (logoPath: string) => {
   try {
-    const response = await fetch(`${origin}${logoPath}`);
+    const response = await fetch(`${logoPath}`);
     const blob = await response.blob();
     return new Promise((resolve) => {
       const reader = new FileReader();

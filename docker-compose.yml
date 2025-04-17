@@ -3,19 +3,6 @@ services:
     image: registry.gitlab.ost.ch:45023/ifs/ipa/mail-signatur-generator/email-signatur-generator/frontend:latest
     ports:
       - "3000:3000"
-    deploy:
-      labels:
-        caddy: email-signatur-generator-frontend.sifs0005.infs.ch
-        caddy.reverse_proxy: '{{ upstreams 3000 }}'
     networks:
       - default
-      - web
     restart: unless-stopped
-
-
-networks:
-  web:
-    external: true
-
-volumes:
-  postgres_data: 

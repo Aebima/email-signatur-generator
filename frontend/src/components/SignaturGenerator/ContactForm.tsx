@@ -9,6 +9,7 @@ import SignaturePreview from "./SignaturePreview";
 interface ContactFormProps {
   onFormChange?: (data: ContactFormValues) => void;
   currentTemplate: string;
+  initialData?: ContactFormValues | null;
 }
 
 export interface ContactFormValues {
@@ -22,7 +23,7 @@ export interface ContactFormValues {
   phoneMobile: string;
 }
 
-const defaultValues: ContactFormValues = {
+const placeholderValues = {
   fullName: "Hans Muster",
   prefixedTitle: "Prof. Dr.",
   suffixTitle: "M.Sc.",
@@ -33,19 +34,36 @@ const defaultValues: ContactFormValues = {
   phoneMobile: "+41 58 257 xx xx",
 };
 
-const ContactForm = ({ onFormChange = () => {}, currentTemplate }: ContactFormProps) => {
+const emptyValues: ContactFormValues = {
+  fullName: "",
+  prefixedTitle: "",
+  suffixTitle: "",
+  function: "",
+  abteilung: "",
+  email: "",
+  phoneOffice: "",
+  phoneMobile: "",
+};
+
+const ContactForm = ({ onFormChange = () => {}, currentTemplate, initialData }: ContactFormProps) => {
   const form = useForm<ContactFormValues>({
-    mode: "onChange",
+    defaultValues: initialData || emptyValues
   });
 
-  const [formData, setFormData] = React.useState<ContactFormValues>(defaultValues);
+  const [formData, setFormData] = React.useState<ContactFormValues>(initialData || placeholderValues);
   const [formErrors, setFormErrors] = React.useState<Record<string, string>>({});
+
+  React.useEffect(() => {
+    if (initialData) {
+      form.reset(initialData);
+      setFormData(initialData);
+    }
+  }, [initialData, form]);
 
   const handleUpdatePreview = () => {
     const currentFormData = form.getValues();
     const errors: Record<string, string> = {};
 
-    // Validation
     if (!currentFormData.fullName.trim()) {
       errors.fullName = "Name ist erforderlich";
     }
@@ -79,7 +97,7 @@ const ContactForm = ({ onFormChange = () => {}, currentTemplate }: ContactFormPr
               <input
                 id="fullName"
                 className={`w-full px-3 py-2 border rounded-md ${formErrors.fullName ? 'border-red-500' : ''}`}
-                placeholder="Hans Muster"
+                placeholder={placeholderValues.fullName}
                 {...form.register("fullName")}
               />
               {formErrors.fullName && (
@@ -95,7 +113,7 @@ const ContactForm = ({ onFormChange = () => {}, currentTemplate }: ContactFormPr
                 <input
                   id="prefixedTitle"
                   className="w-full px-3 py-2 border rounded-md"
-                  placeholder="Prof. Dr."
+                  placeholder={placeholderValues.prefixedTitle}
                   {...form.register("prefixedTitle")}
                 />
               </div>
@@ -107,7 +125,7 @@ const ContactForm = ({ onFormChange = () => {}, currentTemplate }: ContactFormPr
                 <input
                   id="suffixTitle"
                   className="w-full px-3 py-2 border rounded-md"
-                  placeholder="M.Sc."
+                  placeholder={placeholderValues.suffixTitle}
                   {...form.register("suffixTitle")}
                 />
               </div>
@@ -119,7 +137,7 @@ const ContactForm = ({ onFormChange = () => {}, currentTemplate }: ContactFormPr
                 <input
                   id="function"
                   className={`w-full px-3 py-2 border rounded-md ${formErrors.function ? 'border-red-500' : ''}`}
-                  placeholder="Leiter Organisationseinheit"
+                  placeholder={placeholderValues.function}
                   {...form.register("function")}
                 />
                 {formErrors.function && (
@@ -133,7 +151,7 @@ const ContactForm = ({ onFormChange = () => {}, currentTemplate }: ContactFormPr
                 <input
                   id="abteilung"
                   className="w-full px-3 py-2 border rounded-md"
-                  placeholder="Abteilung"
+                  placeholder={placeholderValues.abteilung}
                   {...form.register("abteilung")}
                 />
               </div>
@@ -147,7 +165,7 @@ const ContactForm = ({ onFormChange = () => {}, currentTemplate }: ContactFormPr
                 id="email"
                 type="email"
                 className={`w-full px-3 py-2 border rounded-md ${formErrors.email ? 'border-red-500' : ''}`}
-                placeholder="hans.muster@ost.ch"
+                placeholder={placeholderValues.email}
                 {...form.register("email")}
               />
               {formErrors.email && (
@@ -165,7 +183,7 @@ const ContactForm = ({ onFormChange = () => {}, currentTemplate }: ContactFormPr
                   <input
                     id="phoneOffice"
                     className="w-full pl-10 px-3 py-2 border rounded-md"
-                    placeholder="+41 58 257 xx xx"
+                    placeholder={placeholderValues.phoneOffice}
                     {...form.register("phoneOffice")}
                   />
                 </div>
@@ -180,7 +198,7 @@ const ContactForm = ({ onFormChange = () => {}, currentTemplate }: ContactFormPr
                   <input
                     id="phoneMobile"
                     className="w-full pl-10 px-3 py-2 border rounded-md"
-                    placeholder="+41 58 257 xx xx"
+                    placeholder={placeholderValues.phoneMobile}
                     {...form.register("phoneMobile")}
                   />
                 </div>

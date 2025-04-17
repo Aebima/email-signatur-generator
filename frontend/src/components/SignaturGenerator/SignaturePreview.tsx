@@ -33,7 +33,10 @@ const SignaturePreview = ({ contactInfo, currentTemplate }: SignaturePreviewProp
   const [logoDataUrl, setLogoDataUrl] = React.useState('');
 
   React.useEffect(() => {
-    // Convert logo to data URL when component mounts
+    localStorage.setItem('lastUsedTemplate', currentTemplate);
+  }, [currentTemplate]);
+
+  React.useEffect(() => {
     getLogoDataUrl(template.logo).then(url => setLogoDataUrl(url as string));
   }, [template.logo]);
 

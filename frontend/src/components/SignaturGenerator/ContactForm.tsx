@@ -76,6 +76,15 @@ const ContactForm = ({ onFormChange = () => {}, currentTemplate, initialData }: 
       errors.function = "Funktion ist erforderlich";
     }
 
+    // Telefonnummer-Validierung (nur wenn eine Nummer eingegeben wurde)
+    const phoneRegex = /^\+?[0-9\s-()]{8,}$/;
+    if (currentFormData.phoneOffice.trim() && !phoneRegex.test(currentFormData.phoneOffice)) {
+      errors.phoneOffice = "Bitte geben Sie eine gültige Telefonnummer ein";
+    }
+    if (currentFormData.phoneMobile.trim() && !phoneRegex.test(currentFormData.phoneMobile)) {
+      errors.phoneMobile = "Bitte geben Sie eine gültige Telefonnummer ein";
+    }
+
     setFormErrors(errors);
 
     if (Object.keys(errors).length === 0) {
@@ -182,11 +191,14 @@ const ContactForm = ({ onFormChange = () => {}, currentTemplate, initialData }: 
                   <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <input
                     id="phoneOffice"
-                    className="w-full pl-10 px-3 py-2 border rounded-md"
+                    className={`w-full pl-10 px-3 py-2 border rounded-md ${formErrors.phoneOffice ? 'border-red-500' : ''}`}
                     placeholder={placeholderValues.phoneOffice}
                     {...form.register("phoneOffice")}
                   />
                 </div>
+                {formErrors.phoneOffice && (
+                  <p className="text-red-500 text-sm mt-1">{formErrors.phoneOffice}</p>
+                )}
               </div>
 
               <div>
@@ -197,11 +209,14 @@ const ContactForm = ({ onFormChange = () => {}, currentTemplate, initialData }: 
                   <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <input
                     id="phoneMobile"
-                    className="w-full pl-10 px-3 py-2 border rounded-md"
+                    className={`w-full pl-10 px-3 py-2 border rounded-md ${formErrors.phoneMobile ? 'border-red-500' : ''}`}
                     placeholder={placeholderValues.phoneMobile}
                     {...form.register("phoneMobile")}
                   />
                 </div>
+                {formErrors.phoneMobile && (
+                  <p className="text-red-500 text-sm mt-1">{formErrors.phoneMobile}</p>
+                )}
               </div>
             </div>
 

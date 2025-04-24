@@ -1,16 +1,86 @@
-# email-signatur-generator
+# Email-Signatur-Generator
 
+## Dokumentation
 
+- [Template-Dokumentation](frontend/src/templates/signatures/README.md) - Anleitung zum Hinzufügen neuer Signaturen-Templates
+- [Entwicklungsrichtlinien](docs/DEVELOPMENT.md) - Konventionen und Best Practices
+- [Architektur](docs/ARCHITECTURE.md) - Systemarchitektur und Datenfluss
+
+## Entwicklung
+
+### Voraussetzungen
+- Node.js 18+
+- npm oder yarn
+- Git
+
+### Installation
+```bash
+npm install
+# oder
+yarn install
+```
+
+### Entwicklungsserver
+```bash
+npm run dev
+# oder
+yarn dev
+```
+
+### Build
+```bash
+npm run build
+# oder
+yarn build
+```
+
+### Tests
+```bash
+npm run test
+# oder
+yarn test
+```
+
+## Namenskonventionen
+
+- Komponenten: PascalCase (z.B. `SignaturePreview`)
+- Dateien: kebab-case (z.B. `signature-preview.tsx`)
+- Interfaces: I-Prefix (z.B. `IContactFormValues`)
+- Konstanten: UPPER_SNAKE_CASE
+- Funktionen: camelCase
+- Event Handler: on-Prefix (z.B. `onFormChange`)
+
+## Weiterentwicklung
+
+1. **Neue Templates**
+   - Siehe [Template-Dokumentation](frontend/src/templates/signatures/README.md)
+   - Folgen Sie den Namenskonventionen
+   - Testen Sie in verschiedenen E-Mail-Clients
+
+2. **Neue Features**
+   - Erstellen Sie einen Feature-Branch
+   - Folgen Sie den Entwicklungsrichtlinien
+   - Schreiben Sie Tests
+   - Dokumentieren Sie Änderungen
+
+3. **Bugfixes**
+   - Reproduzieren Sie den Bug
+   - Erstellen Sie einen Fix-Branch
+   - Schreiben Sie Tests
+   - Dokumentieren Sie die Lösung
+
+## Support
+
+Bei Fragen oder Problemen:
+1. Prüfen Sie die Dokumentation
+2. Erstellen Sie ein Issue
+3. Kontaktieren Sie das Entwicklungsteam
 
 ## Getting started
 
 To make it easy for you to get started with GitLab, here's a list of recommended next steps.
 
 Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
-
-## Dokumentation
-
-- [Template-Dokumentation](frontend/src/templates/signatures/README.md) - Anleitung zum Hinzufügen neuer Signaturen-Templates
 
 ## Add your files
 

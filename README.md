@@ -3,8 +3,6 @@
 ## Dokumentation
 
 - [Template-Dokumentation](frontend/src/templates/signatures/README.md) - Anleitung zum Hinzufügen neuer Signaturen-Templates
-- [Entwicklungsrichtlinien](docs/DEVELOPMENT.md) - Konventionen und Best Practices
-- [Architektur](docs/ARCHITECTURE.md) - Systemarchitektur und Datenfluss
 
 ## Entwicklung
 

@@ -54,7 +54,7 @@ const SignaturePreview = ({ contactInfo, currentTemplate }: SignaturePreviewProp
           <div style="margin-bottom: 16px; border: none;">
             ${contactInfo.phoneOffice ? `<p style="margin: 4px 0; border: none;">${template.phoneDirect} ${contactInfo.phoneOffice}</p>` : ''}
             ${contactInfo.phoneMobile ? `<p style="margin: 4px 0; border: none;">${template.phoneCentral} ${contactInfo.phoneMobile}</p>` : ''}
-            <p style="margin: 4px 0; border: none;"><a href="mailto:${contactInfo.email}" style="color: #2563eb; text-decoration: none; border: none; outline: none;">${contactInfo.email}</a></p>
+            <p style="margin: 4px 0; border: none;"><a href="mailto:${contactInfo.email}" style="color: #E24585; text-decoration: none; border: none; outline: none;">${contactInfo.email}</a></p>
           </div>
 
           <div style="border: none;">
@@ -62,7 +62,7 @@ const SignaturePreview = ({ contactInfo, currentTemplate }: SignaturePreviewProp
               <img src="${logoDataUrl}" alt="OST Logo" style="width: 250px !important; display: block;" />
             </div>
             <p style="font-style: italic; margin-bottom: 4px; border: none;">${contactInfo.abteilung}</p>
-            <p style="margin: 0; border: none;">${template.address} <a href="https://www.ost.ch" style="color: #2563eb; text-decoration: none; border: none; outline: none;" target="_blank" rel="nofollow">ost.ch</a></p>
+            <p style="margin: 0; border: none;">${template.address} <a href="https://www.ost.ch" style="color: #E24585; text-decoration: none; border: none; outline: none;" target="_blank" rel="nofollow">ost.ch</a></p>
             <p style="margin-top: 16px; font-weight: bold; border: none;">${template.slogan}</p>
           </div>
         </div>
